@@ -1,8 +1,11 @@
-# SNAKY Bound-20 submission package
+# SNAKY Bound-19 submission package
 
 Filing package for the Big O Speedrun Snaky challenge (bigospeedrun/verifier,
-issue #106): Maker forces a Snaky within 20 own claims against every legal
-Breaker sequence — full `Bound 20` (win + exact card counts + disjointness).
+issue #106): Maker forces a Snaky within 19 own claims against every legal
+Breaker sequence — full `Bound 19` (win + exact card counts + disjointness).
+
+**Status (bound-19 branch):** skeleton only — `Submission/CardTable19.lean` is a
+placeholder with `sorry` table facts.  See `HANDOFF.md`.
 
 ## Layout (maintainer contract, 2026-11-02 18:53Z)
 
@@ -14,12 +17,12 @@ The ONLY source root is `Submission/`:
   `challenges/other-snaky/VerifierStatement.lean`
   (sha256 `49e630b3bab9a3d1006b373edd85cf196eba0f45bdb878e0126db16776ed780b`).
 - `Submission.lean` (repo root) — solution module; exports exactly
-  `theorem Race.bound : BigOSpeedrun.Snaky.Bound 20`.
+  `theorem Race.bound : BigOSpeedrun.Snaky.Bound 19`.
 - `Submission/{Game,Cards,CardsSound,Bounded,Controls}.lean` — the vendored
   gotrevor card world (Apache-2.0, see NOTICE).
-- `Submission/Gen17/*.lean` — the 1,738-card verified table
-  (`decide +kernel`, no `native_decide`).
-- `Submission/{Plane,Plane17,PlanePolicy,PlaneBound}.lean` — the plane bridge
+- `Submission/CardTable19.lean` — the 3,469-card 19-move table (**placeholder**;
+  replaced by the kernel-checked table, `decide +kernel`, no `native_decide`).
+- `Submission/{Plane,PlanePolicy,PlaneBound}.lean` — the plane bridge
   (G1/G2) and the `Bound` bookkeeping pack (G3).
 
 ## Pins

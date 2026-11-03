@@ -2,16 +2,16 @@ import Submission.SnakyStatement
 import Submission.PlanePolicy
 
 /-!
-# G3/G4 — the full `Bound 20` in the board's exact shape
+# G3/G4 — the full `Bound 19` in the board's exact shape
 
-G2 (`Snaky.PlanePolicy`) supplies the policy half: `cardStrategy Gen17.getK` is total and
-fresh everywhere, and wins at claim 20 against every legal Breaker sequence.  This file adds
+G2 (`Snaky.PlanePolicy`) supplies the policy half: `cardStrategy CardTable19.getK` is total and
+fresh everywhere, and wins at claim 19 against every legal Breaker sequence.  This file adds
 the `playState` bookkeeping conjuncts of `Bound` — card counts and disjointness — which are
 pure bookkeeping: Maker's freshness makes his pile grow by exactly one stone per round, and
 Breaker legality (`LegalRepliesBeforeFinal`) does the same for hers while keeping the two
-piles disjoint.  Instantiate with `σ = cardStrategy Gen17.getK`:
+piles disjoint.  Instantiate with `σ = cardStrategy CardTable19.getK`:
 
-* `race_bound_20 : BigOSpeedrun.Snaky.Bound 20` — the challenge target.
+* `race_bound_19 : BigOSpeedrun.Snaky.Bound 19` — the challenge target.
 -/
 namespace Snaky
 
@@ -104,27 +104,28 @@ theorem playState_disjoint_final {σ : Policy Cell}
 
 /-! ## The challenge target -/
 
-/-- **G3**: the full `Bound 20` of the board's `Statement.lean`, with
-σ = `cardStrategy Gen17.getK` (G2's total, fresh, winning policy) and the
+/-- **G3**: the full `Bound 19` of the board's `Statement.lean`, with
+σ = `cardStrategy CardTable19.getK` (G2's total, fresh, winning policy) and the
 `Disjoint`/card-count conjuncts discharged by `playState` bookkeeping from σ's freshness
 and Breaker legality. -/
-theorem race_bound_20 : BigOSpeedrun.Snaky.Bound 20 := by
-  refine ⟨cardStrategy Gen17.getK, fun r M B => cardStrategy_fresh Gen17.getK r M B,
+theorem race_bound_19 : BigOSpeedrun.Snaky.Bound 19 := by
+  refine ⟨cardStrategy CardTable19.getK, fun r M B => cardStrategy_fresh CardTable19.getK r M B,
     fun β hleg => ?_⟩
-  have hσ := cardStrategy_fresh Gen17.getK
+  have hσ := cardStrategy_fresh CardTable19.getK
   have hleg2 := hleg
   simp only [LegalRepliesBeforeFinal, makerAt] at hleg2
-  refine ⟨cardStrategy_wins_20 Gen17.getK (CTree.all_get Gen17.tree_ok) 1737 ⟨1, 0, 0, 1, 0, 0⟩
-      (planeRootOK_of_rootOK Gen17.root_ok) Gen17.root_height β hleg, ?_, ?_,
+  refine ⟨cardStrategy_wins_19 CardTable19.getK (CTree.all_get CardTable19.tree_ok) 3468
+      ⟨1, 0, 0, 1, 0, 0⟩ (planeRootOK_of_rootOK CardTable19.root_ok) CardTable19.root_height β
+      hleg, ?_, ?_,
     fun k hk => ⟨?_, ?_⟩⟩
-  · -- Maker's 20th pile has exactly 20 stones
-    rw [playState_fst_card (fun r M B => (hσ r M B).1) 20 β ∅ ∅ 20, Finset.card_empty]
-  · -- the winning pile is disjoint from Breaker's pile after claim 19
-    exact playState_disjoint_final (fun r M B => (hσ r M B).2) 20 β ∅ ∅ (by omega)
-      (fun j hj => playState_disjoint (fun r M B => (hσ r M B).2) 20 β ∅ ∅
+  · -- Maker's 19th pile has exactly 19 stones
+    rw [playState_fst_card (fun r M B => (hσ r M B).1) 19 β ∅ ∅ 19, Finset.card_empty]
+  · -- the winning pile is disjoint from Breaker's pile after claim 18
+    exact playState_disjoint_final (fun r M B => (hσ r M B).2) 19 β ∅ ∅ (by omega)
+      (fun j hj => playState_disjoint (fun r M B => (hσ r M B).2) 19 β ∅ ∅
         (Finset.disjoint_empty_left ∅) hleg2 j hj)
   · -- every intermediate position is disjoint
-    exact playState_disjoint (fun r M B => (hσ r M B).2) 20 β ∅ ∅
+    exact playState_disjoint (fun r M B => (hσ r M B).2) 19 β ∅ ∅
       (Finset.disjoint_empty_left ∅) hleg2 k hk
   · -- Breaker's k-th pile has exactly k stones
     rw [playState_snd_card (fun j hj => (hleg2 j hj).2) k hk, Finset.card_empty]

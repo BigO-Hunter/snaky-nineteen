@@ -20,9 +20,9 @@ So the whole induction lifts by deleting bookkeeping:
   and already covers replies arbitrarily far away.
 * `planeRootOK` — `rootOK` minus the board-fit and `2 * h ≤ R * C` conjuncts.
 
-The card *data* is untouched: any `get` with `cardOK`-verified cards (e.g. the Gen17 table)
-gives a plane win within the root height.  `Snaky.Plane17` instantiates this with the
-1,738-card table; `Snaky.PlanePolicy` rephrases the result against the board's
+The card *data* is untouched: any `get` with `cardOK`-verified cards (e.g. the 19-move table)
+gives a plane win within the root height.  `Snaky.CardTable19` supplies the table;
+`Snaky.PlanePolicy` rephrases the result against the board's
 `OAI.SnakyPrototype` vocabulary (`HasSnaky`, `playState`).
 -/
 namespace Snaky

@@ -1,21 +1,22 @@
-import Submission.Plane17
+import Submission.Plane
+import Submission.CardTable19
 import Submission.SnakyStatement
 
 /-!
 # G2 — the plane win in the board's vocabulary (`Policy`, `playState`, `HasSnaky`)
 
-`Snaky.Plane17.plane_snaky_wins_in_20` is a game-tree statement.  This file repackages it in
+This file repackages the card-table plane win in
 `OAI.SnakyPrototype.OrdinaryStrategy`'s `playState` form against the challenge `Model`:
 
 * `cardStrategy get` — an explicit **total** policy: play the placed card's prescribed cell when
   some verified card of height ≤ rounds-left is placed with a fresh `p`; otherwise play any
   fresh cell (the "extra stone" of the card proof).  Freshness everywhere:
   `cardStrategy_fresh`.
-* `cardStrategy_wins_20` — against every `LegalRepliesBeforeFinal` Breaker sequence, the final
-  Maker set contains a Snaky: `HasSnaky (playState … 20).1`.
+* `cardStrategy_wins_19` — against every `LegalRepliesBeforeFinal` Breaker sequence, the final
+  Maker set contains a Snaky: `HasSnaky (playState … 19).1`.
 
 The invariant is the card induction of `Snaky.Plane`: at round `k` either a snaky is already on
-board or a verified card of height `≤ 20 - k` is placed.  The final Breaker reply (`β 19`) is
+board or a verified card of height `≤ 19 - k` is placed.  The final Breaker reply (`β 18`) is
 deliberately unrestricted and never needed: a height-1 verified card is already won after the
 move (its pass hint would point at a height-0 card, contradicting `cardOK`'s `1 ≤ h`).
 
@@ -371,28 +372,28 @@ theorem witness_step_final (get : Nat → Option Card)
         omega
       · simp at hpass
 
-/-! ## The 20-round theorem -/
+/-! ## The 19-round theorem -/
 
 /-- **G2 (playState form): following the card strategy, every legal plane Breaker sequence
-loses within 20 Maker claims** — at Maker's 20th claim the set contains a Snaky in the board's
+loses within 19 Maker claims** — at Maker's 19th claim the set contains a Snaky in the board's
 exact sense. -/
-theorem cardStrategy_wins_20 (get : Nat → Option Card)
+theorem cardStrategy_wins_19 (get : Nat → Option Card)
     (hall : ∀ j c, get j = some c → cardOK get c = true)
     (i : Nat) (g₀ : Xf) (hroot : planeRootOK get i g₀ = true)
-    (hk : (get i).all (fun c => decide (c.h ≤ 20)) = true)
-    (β : ℕ → Cell) (hlegal : LegalRepliesBeforeFinal (cardStrategy get) 20 β ∅ ∅) :
-    OAI.SnakyPrototype.HasSnaky (playState (cardStrategy get) 20 β ∅ ∅ 20).1 := by
+    (hk : (get i).all (fun c => decide (c.h ≤ 19)) = true)
+    (β : ℕ → Cell) (hlegal : LegalRepliesBeforeFinal (cardStrategy get) 19 β ∅ ∅) :
+    OAI.SnakyPrototype.HasSnaky (playState (cardStrategy get) 19 β ∅ ∅ 19).1 := by
   obtain ⟨c₀, hc₀, hA₀, hio₀⟩ := planeRootOK_exists hroot
-  have hk₀ : c₀.h ≤ 20 := by
+  have hk₀ : c₀.h ≤ 19 := by
     rw [hc₀] at hk
     simpa only [Option.all_some, decide_eq_true_eq] using hk
   have hleg := hlegal
   simp only [LegalRepliesBeforeFinal, makerAt] at hleg
-  have key : ∀ k, k ≤ 20 →
-      OAI.SnakyPrototype.HasSnaky (playState (cardStrategy get) 20 β ∅ ∅ k).1 ∨
-        ∃ w : CardWitness get (20 - k)
-            (playState (cardStrategy get) 20 β ∅ ∅ k).1
-            (playState (cardStrategy get) 20 β ∅ ∅ k).2, True := by
+  have key : ∀ k, k ≤ 19 →
+      OAI.SnakyPrototype.HasSnaky (playState (cardStrategy get) 19 β ∅ ∅ k).1 ∨
+        ∃ w : CardWitness get (19 - k)
+            (playState (cardStrategy get) 19 β ∅ ∅ k).1
+            (playState (cardStrategy get) 19 β ∅ ∅ k).2, True := by
     intro k
     induction k with
     | zero =>
@@ -406,28 +407,28 @@ theorem cardStrategy_wins_20 (get : Nat → Option Card)
         simp only [playState, Finset.toList_empty] at hs
         nomatch hs
     | succ k ih =>
-      intro hk20
-      have hble : k < 20 := Nat.lt_of_succ_le hk20
-      rcases ih (Nat.le_of_succ_le hk20) with hwin | ⟨w, -⟩
+      intro hk19
+      have hble : k < 19 := Nat.lt_of_succ_le hk19
+      rcases ih (Nat.le_of_succ_le hk19) with hwin | ⟨w, -⟩
       · left
         simp only [playState]
         refine hasSnaky_mono hwin ?_
         intro x hx
         exact Finset.mem_insert_of_mem hx
-      · by_cases hlast : k = 19
+      · by_cases hlast : k = 18
         · left
           subst hlast
           simp only [playState]
           exact witness_step_final get hall
-            (playState (cardStrategy get) 20 β ∅ ∅ 19).1
-            (playState (cardStrategy get) 20 β ∅ ∅ 19).2 w
-        · have hlt : k + 1 < 20 := by omega
+            (playState (cardStrategy get) 19 β ∅ ∅ 18).1
+            (playState (cardStrategy get) 19 β ∅ ∅ 18).2 w
+        · have hlt : k + 1 < 19 := by omega
           obtain ⟨h1, -⟩ := hleg k hlt
-          rcases witness_step get hall (20 - k)
-              (playState (cardStrategy get) 20 β ∅ ∅ k).1
-              (playState (cardStrategy get) 20 β ∅ ∅ k).2 w (by omega)
-              (cardStrategy get (20 - k) (playState (cardStrategy get) 20 β ∅ ∅ k).1
-                (playState (cardStrategy get) 20 β ∅ ∅ k).2) rfl (β k) h1
+          rcases witness_step get hall (19 - k)
+              (playState (cardStrategy get) 19 β ∅ ∅ k).1
+              (playState (cardStrategy get) 19 β ∅ ∅ k).2 w (by omega)
+              (cardStrategy get (19 - k) (playState (cardStrategy get) 19 β ∅ ∅ k).1
+                (playState (cardStrategy get) 19 β ∅ ∅ k).2) rfl (β k) h1
             with hwin | hex
           · left
             simp only [playState]
@@ -435,7 +436,7 @@ theorem cardStrategy_wins_20 (get : Nat → Option Card)
           · right
             obtain ⟨w₂, -⟩ := hex
             exact ⟨w₂, True.intro⟩
-  have hkey := key 20 (Nat.le_refl 20)
+  have hkey := key 19 (Nat.le_refl 19)
   refine Or.elim hkey (fun hwin => hwin) (fun hex => ?_)
   exfalso
   obtain ⟨w, _⟩ := hex
@@ -450,17 +451,18 @@ theorem cardStrategy_wins_20 (get : Nat → Option Card)
 
 /-! ## The G2 deliverable in the board's exact shape -/
 
-/-- **G2**: a total, fresh policy on the plane following the verified Gen17 card table wins
-within 20 Maker claims against every legal Breaker sequence.  The freshness conjunct is the
-first half of `Bound 20`'s policy obligation; the `Disjoint`/card-count conjuncts remain for
+/-- **G2**: a total, fresh policy on the plane following the verified 19-move card table wins
+within 19 Maker claims against every legal Breaker sequence.  The freshness conjunct is the
+first half of `Bound 19`'s policy obligation; the `Disjoint`/card-count conjuncts remain for
 G3/G4. -/
 theorem snaky_plane_bound_win :
     ∃ σ : Policy Cell,
       (∀ r M B, σ r M B ∉ M ∧ σ r M B ∉ B) ∧
-      ∀ β : ℕ → Cell, LegalRepliesBeforeFinal σ 20 β ∅ ∅ →
-        OAI.SnakyPrototype.HasSnaky (playState σ 20 β ∅ ∅ 20).1 :=
-  ⟨cardStrategy Gen17.getK, fun r M B => cardStrategy_fresh Gen17.getK r M B, fun β hβ =>
-    cardStrategy_wins_20 Gen17.getK (CTree.all_get Gen17.tree_ok) 1737 ⟨1, 0, 0, 1, 0, 0⟩
-      (planeRootOK_of_rootOK Gen17.root_ok) Gen17.root_height β hβ⟩
+      ∀ β : ℕ → Cell, LegalRepliesBeforeFinal σ 19 β ∅ ∅ →
+        OAI.SnakyPrototype.HasSnaky (playState σ 19 β ∅ ∅ 19).1 :=
+  ⟨cardStrategy CardTable19.getK, fun r M B => cardStrategy_fresh CardTable19.getK r M B,
+    fun β hβ =>
+    cardStrategy_wins_19 CardTable19.getK (CTree.all_get CardTable19.tree_ok) 3468
+      ⟨1, 0, 0, 1, 0, 0⟩ (planeRootOK_of_rootOK CardTable19.root_ok) CardTable19.root_height β hβ⟩
 
 end Snaky
