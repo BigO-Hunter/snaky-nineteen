@@ -3,15 +3,12 @@ import Submission.Gen19.All
 /-!
 # The 19-move card table (generated)
 
-The kernel-checked 19-move card table (3,469 cards, root index 3468, root
-height 19, `|A| = 0`, `|S| = 249`, source `snaky19.cards.txt`, format
-`snaky-cards-txt-v1`).  The 19-move construction and its card certificate are
-shjvandekamp's — `shjvandekamp/math@64e7eb1`, 2026-10-15,
-`topics/snaky/certificate/snaky19.cards.txt` — and the bound is theirs; this
-package contributes the formalization and the verification packaging.  The table
-itself is assembled here from the same two public catalogs, in the
-`snaky-cards-txt-v1` format that reaches us through gotrevor from Sieben's
-20-move card sequence.  See `NOTICE.md` item 4 and bigospeedrun/verifier#142.  The data lives in the
+The kernel-checked 19-move card table (construction: shjvandekamp,
+shjvandekamp/math@64e7eb1 — a 19-move certificate built on Sieben's
+20-move and Morris's 15×15 strategies; Lean table and verification
+packaging: this campaign, Apache-2.0). 3,469 cards, root index 3468,
+root height 19, `|A| = 0`, `|S| = 249`, source
+`snaky19.cards.txt`, format `snaky-cards-txt-v1`).  The data lives in the
 generated `Submission/Gen19/` modules (cf. `tools/gen19.py`): card literals in
 `DataNN.lean`, the lookup tree in `Tree.lean`, per-chunk `decide +kernel`
 justification proofs in `ChunkNNN.lean` composed into `Gen19.tree_ok`.

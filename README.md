@@ -22,8 +22,8 @@ The ONLY source root is `Submission/`:
   `theorem Race.bound : BigOSpeedrun.Snaky.Bound 19`.
 - `Submission/{Game,Cards,CardsSound,Bounded,Controls}.lean` — the vendored
   gotrevor card world (Apache-2.0, see NOTICE).
-- `Submission/CardTable19.lean` — the 3,469-card 19-move table (**placeholder**;
-  replaced by the kernel-checked table, `decide +kernel`, no `native_decide`).
+- `Submission/CardTable19.lean` — the 3,469-card 19-move table (kernel-checked,
+  `decide +kernel`, no `native_decide`).
 - `Submission/{Plane,PlanePolicy,PlaneBound}.lean` — the plane bridge
   (G1/G2) and the `Bound` bookkeeping pack (G3).
 
