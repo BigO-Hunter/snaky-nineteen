@@ -4,8 +4,10 @@ Filing package for the Big O Speedrun Snaky challenge (bigospeedrun/verifier,
 issue #106): Maker forces a Snaky within 19 own claims against every legal
 Breaker sequence — full `Bound 19` (win + exact card counts + disjointness).
 
-**Status (bound-19 branch):** skeleton only — `Submission/CardTable19.lean` is a
-placeholder with `sorry` table facts.  See `HANDOFF.md`.
+**Status (bound-19 branch):** complete as of `880106a` — `Submission/CardTable19.lean`
+holds the kernel-checked 3,469-card table (`decide +kernel`, zero `sorry`).
+Credit for the 19-move construction belongs to `shjvandekamp/math@64e7eb1`
+(2026-10-15); see `NOTICE.md` item 4.
 
 ## Layout (maintainer contract, 2026-11-02 18:53Z)
 
@@ -20,8 +22,8 @@ The ONLY source root is `Submission/`:
   `theorem Race.bound : BigOSpeedrun.Snaky.Bound 19`.
 - `Submission/{Game,Cards,CardsSound,Bounded,Controls}.lean` — the vendored
   gotrevor card world (Apache-2.0, see NOTICE).
-- `Submission/CardTable19.lean` — the 3,469-card 19-move table (**placeholder**;
-  replaced by the kernel-checked table, `decide +kernel`, no `native_decide`).
+- `Submission/CardTable19.lean` — the 3,469-card 19-move table (kernel-checked,
+  `decide +kernel`, no `native_decide`).
 - `Submission/{Plane,PlanePolicy,PlaneBound}.lean` — the plane bridge
   (G1/G2) and the `Bound` bookkeeping pack (G3).
 
