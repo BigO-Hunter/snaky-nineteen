@@ -1,4 +1,4 @@
-NOTICE — provenance and licensing for the SNAKY Bound-20 package
+NOTICE — provenance and licensing for the SNAKY Bound-19/20 package
 
 1. `Submission/SnakyStatement.lean`
    Byte-for-byte copy of bigospeedrun/verifier
@@ -24,4 +24,22 @@ NOTICE — provenance and licensing for the SNAKY Bound-20 package
    `cardStrategy Gen17.getK`, and the `playState` bookkeeping lemmas),
    2026-11-02. Apache-2.0.
 
-Everything is Apache-2.0 (see LICENSE).
+
+4. `Submission/CardTable19.lean` and `Submission/Gen19/*` — the 3,469-card
+   19-move table, DERIVED from the 19-move certificate
+   `topics/snaky/certificate/snaky19.cards.txt` in shjvandekamp/math @
+   64e7eb1 (first committed 2026-10-15; that repository carries no license;
+   used per the construction author's public attribution request,
+   shjvandekamp/math#8 and bigospeedrun/verifier#142). Measured derivation
+   delta: 3,409 of the author's 3,468 cards appear unchanged (cell content,
+   pass and reply shapes; card numbering and within-card cell order
+   ignored), 59 cards replaced, 1 card inserted (3,469 total).
+   Construction authorship: shjvandekamp — the certificate itself combines
+   Nándor Sieben's public 20-move strategy (1,662 cards), Morris's public
+   15×15 strategy (1,653 cards) and 153 newly constructed cards, per the
+   certificate's own provenance notes. The Lean card table (literals,
+   lookup tree, kernel-checked justifications) and the verification
+   packaging are this campaign's work.
+Everything else is Apache-2.0 (see LICENSE). Item 4's underlying
+certificate remains the construction author's; this package adds no
+license to it.

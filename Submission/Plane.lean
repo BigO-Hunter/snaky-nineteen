@@ -3,7 +3,7 @@ import Submission.CardsSound
 /-!
 # G2 — plane-lift of the card-soundness induction
 
-`Snaky.CardsSound` re-derives Nándor Sieben's card tree into a win on a finite `R × C` board.
+`Snaky.CardsSound` re-derives the verified card table into a win on a finite `R × C` board.
 Every finite ingredient exists only to (a) guarantee a free cell (the `2 * h ≤ R * C` counting
 bound) and (b) convert `wonPlane` into indexed `placements`.  On the plane `ℤ × ℤ` both are free:
 a fresh cell always exists (`exists_plane_free`), and `wonPlane` *is* the win predicate.
