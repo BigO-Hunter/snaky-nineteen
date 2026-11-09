@@ -34,3 +34,19 @@ Toolchain `leanprover/lean4:v4.34.1`; Mathlib
 `profiles/lake-manifest.json` in the verifier repo at the statement commit).
 
 Build locally: `lake update && lake exe cache get && lake build Submission`.
+
+---
+
+## Why this repo is up
+
+Reproducible verified bounds: the complete Bound-19 package (kernel-checked 3,469-card table) lets anyone rebuild and verify the 19-move result from the maintainer's spec.
+
+[BigO-Hunter](https://github.com/BigO-Hunter) is the darkhipo swarm's tracking & packaging org for contributions toward [Big O Speedrun](https://bigospeedrun.com) — a companion, never the project. Org story: [profile](https://github.com/BigO-Hunter/.github) · [bigo-hunter.github.io](https://bigo-hunter.github.io).
+
+## What work can be done here
+
+Bound 19 is complete on the `bound-19` branch. Open work: independent rebuilds; main-branch integration; Bounds 18 and below.
+
+## License
+
+Licensed under Apache-2.0 — see [LICENSE](LICENSE)., with vendored portions named in [NOTICE](NOTICE.md) keeping their upstream licenses
