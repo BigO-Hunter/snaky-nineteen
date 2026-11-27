@@ -1,3 +1,11 @@
+> **HISTORICAL — superseded handoff (skeleton stage, 2026-11-03).**
+> The `bound-19` branch is COMPLETE: `Submission/CardTable19.lean` now imports the
+> kernel-checked 19-move card table (`Submission/Gen19/`, `decide +kernel`, zero sorry;
+> construction credit shjvandekamp/math@64e7eb1). The placeholder/sorry state described
+> below no longer exists. Retained for provenance; current state and build instructions
+> live in [README.md](README.md). The `darkhipo/snaky-twenty` base reference is the
+> pre-transfer namespace (now BigO-Hunter/snaky-twenty).
+
 # HANDOFF — bound-19 skeleton (Snaky 19-move proof, BigO verifier)
 
 Branch `bound-19`, based on `darkhipo/snaky-twenty` @ `f6248dc3` (the verified
