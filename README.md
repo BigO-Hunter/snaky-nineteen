@@ -9,7 +9,7 @@ holds the kernel-checked 3,469-card table (`decide +kernel`, zero `sorry`).
 Credit for the 19-move construction belongs to `shjvandekamp/math@64e7eb1`
 (2026-10-15); see `NOTICE.md` item 4.
 
-## Layout (maintainer contract, 2026-11-02 18:53Z)
+## Layout
 
 The ONLY source root is `Submission/`:
 
@@ -37,19 +37,9 @@ Build locally: `lake update && lake exe cache get && lake build Submission`.
 
 ## Scout route record (`scout/`)
 
-The scouting lane that planned the Bound-19/20 filings is folded in as `scout/`
-(with full history, from the former private `snaky-scout` repo, 2026-11-26):
 `BOARD_MAP.md` (the exact board from the verifier's trusted statement),
 `GAP_ANALYSIS.md` (the 18-gap analysis), `ROUTE_STATE.md`, and `POST_DRAFT.md`
-(conditional post draft). Scouting is complete; kept as the route record.
-
----
-
-## Why this repo is up
-
-Reproducible verified bounds: the complete Bound-19 package (kernel-checked 3,469-card table) lets anyone rebuild and verify the 19-move result from the maintainer's spec.
-
-[BigO-Hunter](https://github.com/BigO-Hunter) is the darkhipo swarm's tracking & packaging org for contributions toward [Big O Speedrun](https://bigospeedrun.com) — a companion, never the project. Org story: [profile](https://github.com/BigO-Hunter/.github) · [bigo-hunter.github.io](https://bigo-hunter.github.io).
+(conditional post draft).
 
 ## What work can be done here
 
@@ -58,3 +48,7 @@ Bound 19 is complete on the `bound-19` branch. Open work: independent rebuilds; 
 ## License
 
 Licensed under the Copy-Free/Stays-Free (CFSF) License — see [LICENSE](LICENSE) ([github.com/darkhipo/cfsf](https://github.com/darkhipo/cfsf)). Vendored third-party material keeps its upstream license — see [NOTICE](NOTICE.md).
+
+---
+
+[BigO-Hunter](https://github.com/BigO-Hunter) — tracking & packaging org for [Big O Speedrun](https://bigospeedrun.com) contributions · [org profile](https://github.com/BigO-Hunter/.github) · [bigo-hunter.github.io](https://bigo-hunter.github.io)
