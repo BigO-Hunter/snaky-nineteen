@@ -35,6 +35,14 @@ Toolchain `leanprover/lean4:v4.34.1`; Mathlib
 
 Build locally: `lake update && lake exe cache get && lake build Submission`.
 
+## Scout route record (`scout/`)
+
+The scouting lane that planned the Bound-19/20 filings is folded in as `scout/`
+(with full history, from the former private `snaky-scout` repo, 2026-11-26):
+`BOARD_MAP.md` (the exact board from the verifier's trusted statement),
+`GAP_ANALYSIS.md` (the 18-gap analysis), `ROUTE_STATE.md`, and `POST_DRAFT.md`
+(conditional post draft). Scouting is complete; kept as the route record.
+
 ---
 
 ## Why this repo is up
